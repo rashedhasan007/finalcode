@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".customwebview">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <WebView
+                android:layout_width="match_parent"
+                android:id="@+id/webview1"
+                android:layout_height="match_parent">
+
+            </WebView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="9"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Edit"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/addproductbutton"
+                android:id="@+id/Edit"
+                android:layout_gravity="center_horizontal"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Share"
+                android:background="@drawable/addproductbutton"
+                android:id="@+id/Share"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    tools:context=".signup">
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/reg2"
+        android:layout_height="100dp" />
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:src="@drawable/reg1"
+        android:layout_gravity="center_horizontal"
+        app:riv_corner_radius="10dp"
+        app:riv_border_width="0dip"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="5dp"
+        app:riv_border_color="#FFDB29"
+        app:riv_mutate_background="true"
+        android:layout_height="185dp"
+        android:layout_width="200dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:fontFamily="@font/latobold"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/Black"
+        android:text="Registration"
+        android:layout_height="30dp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/psword"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Address" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:text="Signup"
+            android:background="@drawable/addproductbutton"
+            android:id="@+id/btnregister"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:fontFamily="@font/latobold"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:textSize="20dp"
+            android:textColor="@color/Black"
+            android:text="Welcome to Honeypani"
+            android:layout_height="30dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</LinearLayout>

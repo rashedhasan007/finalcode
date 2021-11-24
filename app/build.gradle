@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "rashed.hasan.hone"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+apply plugin: 'com.android.application'
+//apply plugin: 'com.google.gms:google-services'
+apply plugin: 'com.google.gms.' +
+        'google-services'
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //implementation 'com.android.support:appcompat-v7:27.+'
+    //implementation 'com.google.firebase:firebase-core:17.2.3'
+    implementation 'com.firebaseui:firebase-ui-database:5.0.0'
+    //storage
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
+    //add firebase ui recyclerview dependency
+    implementation 'com.google.firebase:firebase-core:17.2.2' // adding firebase core dependency
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    //material design for RecycleView
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.firebase:firebase-core:17.2.3'
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.google.firebase:firebase-bom:28.4.1'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-firestore:22.0.1'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    //implementation 'com.android.support:support-v4:30.+
+    implementation 'com.github.yalantis:ucrop:2.2.6'
+    // '
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+    implementation 'com.google.android.material:material:1.3.0'
+    //implementation 'com.android.support:support-v4:30.+'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.android.material:material:1.1.0-alpha06'
+    implementation 'com.android.support:design:27.1.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.github.shrikanth7698:Custom-Navigation-Drawer:v0.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

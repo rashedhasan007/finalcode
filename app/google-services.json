@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "338756233517",
+    "firebase_url": "https://hoomfood-4f257.firebaseio.com",
+    "project_id": "hoomfood-4f257",
+    "storage_bucket": "hoomfood-4f257.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338756233517:android:277a4dad3bbe3355ef4ba4",
+        "android_client_info": {
+          "package_name": "rashed.hasan.hone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338756233517-rg7la4okh2n75qrcc53rsbcoejt6gcg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP3boMshE3Z5e4vSZgVE-2b_kKqYU4zhw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338756233517-rg7la4okh2n75qrcc53rsbcoejt6gcg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

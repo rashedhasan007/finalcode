@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".theme">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="510dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/themecorer"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/latobold"
+                    android:text="E-comerece"
+                    android:textAlignment="center"
+                    android:textColor="@color/White"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewGirdView"
+                    android:layout_width="300dp"
+                    android:layout_height="350dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/latobold"
+                        android:text="Price"
+                        android:textAlignment="center"
+                        android:textColor="@color/White"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/latobold"
+                        android:text="500"
+                        android:textAlignment="center"
+                        android:textColor="@color/White"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addproductxml"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/addproductbutton"
+                    android:text="Buy Now" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="510dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/themecorer"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/latobold"
+                    android:text="E-comerece"
+                    android:textAlignment="center"
+                    android:textColor="@color/White"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewGirdView1"
+                    android:layout_width="300dp"
+                    android:layout_height="350dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/latobold"
+                        android:text="Price"
+                        android:textAlignment="center"
+                        android:textColor="@color/White"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/latobold"
+                        android:text="500"
+                        android:textAlignment="center"
+                        android:textColor="@color/White"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addproductxml1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/addproductbutton"
+                    android:text="Buy Now" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="510dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/themecorer"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/latobold"
+                    android:text="E-comerece"
+                    android:textAlignment="center"
+                    android:textColor="@color/White"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewGirdView2"
+                    android:layout_width="300dp"
+                    android:layout_height="350dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/latobold"
+                        android:text="Price"
+                        android:textAlignment="center"
+                        android:textColor="@color/White"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/latobold"
+                        android:text="500"
+                        android:textAlignment="center"
+                        android:textColor="@color/White"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addproductxml2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/addproductbutton"
+                    android:text="Buy Now" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="510dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/themecorer"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/latobold"
+                    android:text="E-comerece"
+                    android:textAlignment="center"
+                    android:textColor="@color/White"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewGirdView3"
+                    android:layout_width="300dp"
+                    android:layout_height="350dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/latobold"
+                        android:text="Price"
+                        android:textAlignment="center"
+                        android:textColor="@color/White"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/latobold"
+                        android:text="500"
+                        android:textAlignment="center"
+                        android:textColor="@color/White"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addproductxml3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/addproductbutton"
+                    android:text="Buy Now" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+</FrameLayout>

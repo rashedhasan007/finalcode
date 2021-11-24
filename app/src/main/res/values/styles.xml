@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#FFD735</item>
+        <item name="colorPrimaryDark">#FFD735</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/latobold</item>
+        <item name="hintEnabled">true</item>
+        <item name="android:textColorHint">#FFD735</item>
+        <item name="boxStrokeColor">#FFD735</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="hintTextColor">@color/Black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="AppTheme1" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/latobold</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+    <style name="EditText.OutlinedBox" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/latobold</item>
+        <item name="hintEnabled">true</item>
+        <item name="android:textColorHint">#FFD735</item>
+        <item name="boxStrokeColor">#FFD735</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="hintTextColor">@color/Black</item>
+    </style>
+
+</resources>
