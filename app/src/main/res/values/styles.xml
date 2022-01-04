@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#FFD735</item>
-        <item name="colorPrimaryDark">#FFD735</item>
+        <item name="colorPrimary">#6509AC</item>
+        <item name="colorPrimaryDark">#6509AC</item>
         <item name="android:minHeight">56dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/latobold</item>

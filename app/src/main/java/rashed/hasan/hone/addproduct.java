@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.os.FileUtils;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -41,6 +42,7 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -271,40 +273,34 @@ public class addproduct extends Fragment {
 
             // Get the Uri of data
             filePath = data.getData();
-            try {
 
-                // Setting image on image view using Bitmap
-                // Setting image on image view using Bitmap
-                String destinationFileName = UUID.randomUUID().toString() + ".jpg";
-                Activity context;
-                startActivityForResult(UCrop.of(data.getData(), Uri.parse(destinationFileName))
-                        .withMaxResultSize(1200, 1383)
-                        .getIntent(getContext()),UCrop.REQUEST_CROP);
-                if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
-                    final Uri resultUri = UCrop.getOutput(data);
-                    //imageView1.setImageURI(resultUri);
-                } else if (resultCode == UCrop.RESULT_ERROR) {
-                    final Throwable cropError = UCrop.getError(data);
-                }
-                //imageView1.setImageBitmap(BitmapFactory.decodeFile(resultUri.getPath()));
-                Bitmap bitmap = MediaStore
-                        .Images
-                        .Media
-                        .getBitmap(
-                                getActivity().getApplicationContext().getContentResolver(),
-                                filePath);
-                bitmap = Bitmap.createScaledBitmap(bitmap, 1200, 1486, false);
-                //imageView2.setImageBitmap(bitmap);
-
-
+            // Setting image on image view using Bitmap
+            // Setting image on image view using Bitmap
+            String destinationFileName = UUID.randomUUID().toString() + ".jpg";
+            Uri destUri = Uri.fromFile(new File(getActivity().getFilesDir(), "U_Crop_Image_" + System.currentTimeMillis() + ".png"));
+            Activity context;
+            Log.i(TAG, "filepath: " + filePath);
+            Uri sourceUri = Uri.parse("file://" + filePath);
+            UCrop.Options options = new UCrop.Options();
+            UCrop.of(filePath,destUri)
+                    .withOptions(options)
+                    .withAspectRatio(1, 1)
+                    .start(getActivity(), this, requestCode);
+            Log.i(TAG, "fileimage urinfdlfldnfdlfn: " + UCrop.REQUEST_CROP);
+            if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
+                Uri resultUri = UCrop.getOutput(data);
+                Log.i(TAG, "fileimage u: " + resultUri);
+                imageView1.setImageURI(resultUri);
+            } else {
+                Log.i(TAG, "fiErroor u: " );
+                Uri imageUri = UCrop.getOutput(data);
+                Log.i(TAG, "fiErroor u: " +imageUri);
+                imageView1.setImageURI(imageUri);
             }
 
-            catch (IOException e) {
-                // Log the exception
-                e.printStackTrace();
-            }
 
         }
+
         if (requestCode == PICK_IMAGE_REQUEST1
                 && resultCode == RESULT_OK
                 && data != null
@@ -312,30 +308,23 @@ public class addproduct extends Fragment {
 
             // Get the Uri of data
             filePath1 = data.getData();
-            try {
 
-                // Setting image on image view using Bitmap
-                // Setting image on image view using Bitmap
-                String destinationFileName = UUID.randomUUID().toString() + ".jpg";
-                UCrop.of(data.getData(), Uri.parse(destinationFileName))
-                        .withMaxResultSize(1200, 1486)
-                        .withAspectRatio(4, 5);
-                final Uri resultUri = UCrop.getOutput(data);
-                imageView1.setImageBitmap(BitmapFactory.decodeFile(resultUri.getPath()));
-                Bitmap bitmap = MediaStore
-                        .Images
-                        .Media
-                        .getBitmap(
-                                getActivity().getApplicationContext().getContentResolver(),
-                                filePath1);
-                bitmap = Bitmap.createScaledBitmap(bitmap, 1200, 1486, false);
-                imageView2.setImageBitmap(bitmap);
-            }
+            // Setting image on image view using Bitmap
+            // Setting image on image view using Bitmap
+            String destinationFileName = UUID.randomUUID().toString() + ".jpg";
+            Uri destUri = Uri.fromFile(new File(getActivity().getFilesDir(), "U_Crop_Image_" + System.currentTimeMillis() + ".png"));
+            Activity context;
+            Log.i(TAG, "filepath: " + filePath);
+            Uri sourceUri = Uri.parse("file://" + filePath);
+            UCrop.Options options = new UCrop.Options();
+            UCrop.of(filePath1,destUri)
+                    .withOptions(options)
+                    .withAspectRatio(1, 1)
+                    .start(getActivity(), this, requestCode);
+            Uri imageUri = UCrop.getOutput(data);
+            Log.i(TAG, "fileimage urinfdlfldnfdlfn: " + UCrop.REQUEST_CROP);
 
-            catch (IOException e) {
-                // Log the exception
-                e.printStackTrace();
-            }
+
         }
         if (requestCode == PICK_IMAGE_REQUEST2
                 && resultCode == RESULT_OK
@@ -344,23 +333,18 @@ public class addproduct extends Fragment {
 
             // Get the Uri of data
             filePath2 = data.getData();
-            try {
+            String destinationFileName = UUID.randomUUID().toString() + ".jpg";
+            Uri destUri = Uri.fromFile(new File(getActivity().getFilesDir(), "U_Crop_Image_" + System.currentTimeMillis() + ".png"));
+            Activity context;
+            Log.i(TAG, "filepath: " + filePath);
+            Uri sourceUri = Uri.parse("file://" + filePath);
+            UCrop.Options options = new UCrop.Options();
+            UCrop.of(filePath2,destUri)
+                    .withOptions(options)
+                    .withAspectRatio(1, 1)
+                    .start(getActivity(), this, requestCode);
+            Log.i(TAG, "fileimage urinfdlfldnfdlfn: " + UCrop.REQUEST_CROP);
 
-                // Setting image on image view using Bitmap
-                Bitmap bitmap = MediaStore
-                        .Images
-                        .Media
-                        .getBitmap(
-                                getActivity().getApplicationContext().getContentResolver(),
-                                filePath2);
-                bitmap = Bitmap.createScaledBitmap(bitmap, 1200, 1486, false);
-                imageView3.setImageBitmap(bitmap);
-            }
-
-            catch (IOException e) {
-                // Log the exception
-                e.printStackTrace();
-            }
         }
         if (requestCode == PICK_IMAGE_REQUEST3
                 && resultCode == RESULT_OK
@@ -369,23 +353,37 @@ public class addproduct extends Fragment {
 
             // Get the Uri of data
             filePath3 = data.getData();
-            try {
-
-                // Setting image on image view using Bitmap
-                Bitmap bitmap = MediaStore
-                        .Images
-                        .Media
-                        .getBitmap(
-                                getActivity().getApplicationContext().getContentResolver(),
-                                filePath3);
-                bitmap = Bitmap.createScaledBitmap(bitmap, 1200, 1486, false);
-                imageView4.setImageBitmap(bitmap);
-            }
-
-            catch (IOException e) {
-                // Log the exception
-                e.printStackTrace();
-            }
+            String destinationFileName = UUID.randomUUID().toString() + ".jpg";
+            Uri destUri = Uri.fromFile(new File(getActivity().getFilesDir(), "U_Crop_Image_" + System.currentTimeMillis() + ".png"));
+            Activity context;
+            Log.i(TAG, "filepath: " + filePath);
+            Uri sourceUri = Uri.parse("file://" + filePath);
+            UCrop.Options options = new UCrop.Options();
+            UCrop.of(filePath3,destUri)
+                    .withOptions(options)
+                    .withAspectRatio(1, 1)
+                    .start(getActivity(), this, requestCode);
+            Log.i(TAG, "fileimage urinfdlfldnfdlfn: " + UCrop.REQUEST_CROP);
+        }
+        if (requestCode ==PICK_IMAGE_REQUEST) {
+            Uri resultUri = UCrop.getOutput(data);
+            Log.i(TAG, "fileimage u: " + resultUri);
+            imageView1.setImageURI(resultUri);
+        }
+        if (requestCode ==PICK_IMAGE_REQUEST1) {
+            Uri resultUri = UCrop.getOutput(data);
+            Log.i(TAG, "fileimage u: " + resultUri);
+            imageView2.setImageURI(resultUri);
+        }
+        if (requestCode ==PICK_IMAGE_REQUEST2) {
+            Uri resultUri = UCrop.getOutput(data);
+            Log.i(TAG, "fileimage u: " + resultUri);
+            imageView3.setImageURI(resultUri);
+        }
+        if (requestCode ==PICK_IMAGE_REQUEST3) {
+            Uri resultUri = UCrop.getOutput(data);
+            Log.i(TAG, "fileimage u: " + resultUri);
+            imageView4.setImageURI(resultUri);
         }
     }
 

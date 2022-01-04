@@ -184,7 +184,7 @@ public class DataRVAdapter extends RecyclerView.Adapter<DataRVAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             // initializing the views of recycler views.
-            courseNameTV = itemView.findViewById(R.id.idTVtext);
+            courseNameTV = itemView.findViewById(R.id.idTextview);
             courseIV = itemView.findViewById(R.id.idIVimage);
             shareproduct=itemView.findViewById(R.id.Shareproduct);
             editproduct=itemView.findViewById(R.id.editproduct);

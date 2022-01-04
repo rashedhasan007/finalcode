@@ -1,6 +1,8 @@
 package rashed.hasan.hone;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,9 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -22,6 +25,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -78,49 +82,19 @@ public class editprofile extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle("TITOLO U16");
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_editprofile, container, false);
+        View view = inflater.inflate(R.layout.fragment_reseller, container, false);
         // Inflate the layout for this fragment
-        final EditText valuedata=view.findViewById(R.id.editprofile);
-        Button button=view.findViewById(R.id.editprofilesubmit);
-        String value = getArguments().getString("editprofile");
-        Log.d(TAG,  value);
-        if (value=="name") button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-// load Second Fragment
-                final String valuedata1 = valuedata.getText().toString();
-                Editname(valuedata1);
-                Log.d(TAG,  valuedata1);
-               loadFragment();
 
-            }
-        });
-        if (value=="bkash") button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-// load Second Fragment
-                final String valuedata1 = valuedata.getText().toString();
-                Editbkash(valuedata1);
-                Log.d(TAG,  valuedata1);
-                loadFragment();
-
-            }
-        });
-        if (value=="nid") button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-// load Second Fragment
-                final String valuedata1 = valuedata.getText().toString();
-                Editnid(valuedata1);
-                Log.d(TAG,  valuedata1);
-                loadFragment();
-
-            }
-        });
 
         return view;
         //inflater.inflate(R.layout.fragment_customwebview, container, false);
@@ -170,76 +144,6 @@ public class editprofile extends Fragment {
             view.loadUrl(url);
             return true;
         }
-    }
-    private void loadFragment() {
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.frameLayout, new first()).commit();
-    }
-    private void Editname(String valuedata) {
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        //CollectionReference dbCourses = db.collection("Courses").document("jf");
-        CollectionReference dbCourses = db.collection("Courses");
-        editname courses = new editname(valuedata);
-
-        db.collection("profile").document("editname")
-                .set(courses)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
-    }
-    private void Editnid(String valuedata) {
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        //CollectionReference dbCourses = db.collection("Courses").document("jf");
-        CollectionReference dbCourses = db.collection("Courses");
-        editbkash courses = new editbkash(valuedata);
-
-        db.collection("profile").document("editnid")
-                .set(courses)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
-    }
-    private void Editbkash(String valuedata) {
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        //CollectionReference dbCourses = db.collection("Courses").document("jf");
-        CollectionReference dbCourses = db.collection("Courses");
-        editnid courses = new editnid(valuedata);
-
-        db.collection("profile").document("editbkash")
-                .set(courses)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
-                    }
-                });
     }
 
 }

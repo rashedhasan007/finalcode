@@ -3,6 +3,7 @@ package rashed.hasan.hone;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -88,8 +89,8 @@ public class MainActivity extends AppCompatActivity implements addproduct.OnFrag
                     }
                     case 3:{
                         color1 = R.color.colorPrimary;
-                        fragmentClass = singlepage.class;
-                        break;
+                        Intent i = new Intent(getApplicationContext(),reselleractivity.class);
+                        startActivity(i);
                     }
                     case 4:{
                         color1 = R.color.colorPrimary;
@@ -146,5 +147,4 @@ public class MainActivity extends AppCompatActivity implements addproduct.OnFrag
     public void onFragmentInteraction(Uri uri) {
 
     }
-
 }

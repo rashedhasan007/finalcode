@@ -11,16 +11,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -42,6 +51,10 @@ public class theme extends Fragment {
     private ProgressDialog progressDialog;
     FirebaseRecyclerAdapter<product_getter_setter, test.BlogViewHolder> firebaseRecyclerAdapter,firebaseRecyclerAdapter1;
     LinearLayoutManager mLayoutManager;
+    private RecyclerView courseRV;
+    private ArrayList<DataModalreseller> dataModalArrayList;
+    private DataRVAdapterreseller dataRVAdapter;
+    private FirebaseFirestore db;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -55,148 +68,81 @@ public class theme extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_theme, container, false);
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading Products Please Wait...");
-        progressDialog.show();
-        mdatabasereference = FirebaseDatabase.getInstance().getReference("products").child("accessories");
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewGirdView);
-        recyclerView2 = (RecyclerView) view.findViewById(R.id.recyclerViewGirdView1);
-        recyclerView3 = (RecyclerView) view.findViewById(R.id.recyclerViewGirdView2);
-        recyclerView4 = (RecyclerView) view.findViewById(R.id.recyclerViewGirdView3);
+        // initializing our variables.
+        courseRV = view.findViewById(R.id.idRVItems1);
+
+        // initializing our variable for firebase
+        // firestore and getting its instance.
+        db = FirebaseFirestore.getInstance();
+
+        // creating our new array list
+        dataModalArrayList = new ArrayList<>();
+        courseRV.setHasFixedSize(true);
+
+        // adding horizontal layout manager for our recycler view.
+        //courseRV.setLayoutManager(new LinearLayoutManager(getActivity()));
+        int numberOfColumns =2;
+        courseRV.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
+
+        // adding our array list to our recycler view adapter class.
+        dataRVAdapter = new DataRVAdapterreseller(dataModalArrayList, getActivity());
+
+        // setting adapter to our recycler view.
+        courseRV.setAdapter(dataRVAdapter);
+
+        loadrecyclerViewData();
 
         return view;
     }
     public void onStart() {
         super.onStart();
-        query1 = FirebaseDatabase.getInstance().getReference().child("products").child("accessories");
-        FirebaseRecyclerOptions<product_getter_setter> options =
-                new FirebaseRecyclerOptions.Builder<product_getter_setter>()
-                        .setQuery(query1, product_getter_setter.class)
-                        .build();
-        Log.d("Options"," data : "+options);
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<product_getter_setter, test.BlogViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull test.BlogViewHolder blogViewHolder, final int i, @NonNull product_getter_setter product_get_set_v) {
-                blogViewHolder.setname(product_get_set_v.getName());
-                String image_url =blogViewHolder.setimage(product_get_set_v.getImage());
-                String link= product_get_set_v.getLink();
-                Log.d("LINKDATA"," data : "+link);
-                blogViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final String productid=getRef(i).getKey();
-                        Log.d("productid"," data : "+productid);
-                        mdatabasereference.child(productid).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                String finallink = dataSnapshot.child("link").getValue(String.class);
-                                Log.d("productLink"," data : "+finallink);
-                                customwebview ldf=new customwebview();
-                                Bundle args = new Bundle();
-                                args.putString("linktheme",finallink);
-                                ldf.setArguments(args);
-                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.frameLayout,ldf).commit();
-                                //loadFragment();
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                            }
-                        });
-                    }
-                });
-            }
-            @NonNull
-            @Override
-            public test.BlogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.customlayout1, parent, false);
-                progressDialog.dismiss();
-                return new test.BlogViewHolder(view);
-            }
-        };
-        firebaseRecyclerAdapter.startListening();
-        //GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(firebaseRecyclerAdapter);
 
-        query2 = FirebaseDatabase.getInstance().getReference().child("products").child("accessories");
-        FirebaseRecyclerOptions<product_getter_setter> options1 =
-                new FirebaseRecyclerOptions.Builder<product_getter_setter>()
-                        .setQuery(query2, product_getter_setter.class)
-                        .build();
-        Log.d("Options"," data : "+options);
-        firebaseRecyclerAdapter1 = new FirebaseRecyclerAdapter<product_getter_setter, test.BlogViewHolder>(options1) {
-            @Override
-            protected void onBindViewHolder(@NonNull test.BlogViewHolder blogViewHolder, final int i, @NonNull product_getter_setter product_get_set_v) {
-                blogViewHolder.setname(product_get_set_v.getName());
-                String image_url =blogViewHolder.setimage(product_get_set_v.getImage());
-                String link= product_get_set_v.getLink();
-                Log.d("LINKDATA"," data : "+link);
-                blogViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final String productid=getRef(i).getKey();
-                        Log.d("productid"," data : "+productid);
-                        mdatabasereference.child(productid).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                String finallink = dataSnapshot.child("link").getValue(String.class);
-                                Log.d("productLink"," data : "+finallink);
-                                customwebview ldf=new customwebview();
-                                Bundle args = new Bundle();
-                                args.putString("linktheme",finallink);
-                                ldf.setArguments(args);
-                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.frameLayout,ldf).commit();
-                                //loadFragment();
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                            }
-                        });
-                    }
-                });
-            }
-            @NonNull
-            @Override
-            public test.BlogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.customlayout1, parent, false);
-                progressDialog.dismiss();
-                return new test.BlogViewHolder(view);
-            }
-        };
-        firebaseRecyclerAdapter1.startListening();
-        //GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
-        LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
-        recyclerView2.setLayoutManager(linearLayoutManager1);
-        recyclerView2.setAdapter(firebaseRecyclerAdapter1);
+    }
+    private void loadrecyclerViewData() {
 
+        db.collection("Product").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        // after getting the data we are calling on success method
+                        // and inside this method we are checking if the received
+                        // query snapshot is empty or not.
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            // if the snapshot is not empty we are hiding our
+                            // progress bar and adding our data in a list.
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                // after getting this list we are passing that
+                                // list to our object class.
+                                DataModalreseller dataModal = d.toObject(DataModalreseller.class);
+
+                                // and we will pass this object class
+                                // inside our arraylist which we have
+                                // created for recycler view.
+                                dataModalArrayList.add(dataModal);
+                            }
+                            // after adding the data to recycler view.
+                            // we are calling recycler view notifyDataSetChanged
+                            // method to notify that data has been changed in recycler view.
+                            dataRVAdapter.notifyDataSetChanged();
+                        } else {
+                            // if the snapshot is empty we are
+                            // displaying a toast message.
+                            Toast.makeText(getActivity(), "No data found in Database", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // if we do not get any data or any error we are displaying
+                // a toast message that we do not get any data
+                Toast.makeText(getActivity(), "Fail to get the data.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
-    public static class BlogViewHolder extends RecyclerView.ViewHolder
-    {
-        View mView;
-        public BlogViewHolder(View itemView)
-        {
-            super(itemView);
-            mView=itemView;
-        }
-        public void setname(String name)
-        {
-            //TextView ename=(TextView)mView.findViewById(R.id.text1);
-            //ename.setText(name);
-        }
-        public String setimage(String url)
-        {
-            ImageView image = (ImageView)mView.findViewById(R.id.productimage);
-            Picasso.get().load(url).into(image);
-            return url;
-        }
-    }
+
 
 
 }

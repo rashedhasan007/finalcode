@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,10 +57,12 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
@@ -96,12 +99,6 @@ public class first<db> extends Fragment {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         dropdown = view.findViewById(R.id.spiner);
         Button logout=view.findViewById(R.id.Logout);
-        LinearLayout editname=view.findViewById(R.id.editname);
-        LinearLayout editbkash=view.findViewById(R.id.bkashnumber);
-        LinearLayout editnid=view.findViewById(R.id.nidnumber);
-        final TextView yourname=view.findViewById(R.id.yourname);
-        final TextView yournid=view.findViewById(R.id.nid);
-        final TextView yourbkash=view.findViewById(R.id.bkash);
         final TextView totalearn=view.findViewById(R.id.totalearn);
         final TextView totaldelivery=view.findViewById(R.id.totalshipped);
         final TextView totalorder=view.findViewById(R.id.totalorder);
@@ -112,56 +109,6 @@ public class first<db> extends Fragment {
 
 
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("profile").document("editname");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData().get("editnameid").toString());
-                        yourname.setText( document.getData().get("editnameid").toString());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-        DocumentReference docRef1 = FirebaseFirestore.getInstance().collection("profile").document("editnid");
-        docRef1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData().get("valuedata").toString());
-                        yournid.setText( document.getData().get("valuedata").toString());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-        DocumentReference docRef2 = FirebaseFirestore.getInstance().collection("profile").document("editbkash");
-        docRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData().get("editnid").toString());
-                        yourbkash.setText( document.getData().get("editnid").toString());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
         DocumentReference docRef3 = FirebaseFirestore.getInstance().collection("profile").document("totalearn");
         docRef3.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -214,48 +161,6 @@ public class first<db> extends Fragment {
             }
         });
 
-
-        editname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-// load Second Fragment
-                editprofile ldf=new editprofile();
-                Bundle args = new Bundle();
-                args.putString("editprofile","name");
-                ldf.setArguments(args);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.frameLayout,ldf).commit();
-                //loadFragment();
-            }
-        });
-
-        editbkash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-// load Second Fragment
-                editprofile ldf=new editprofile();
-                Bundle args = new Bundle();
-                args.putString("editprofile","bkash");
-                ldf.setArguments(args);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.frameLayout,ldf).commit();
-                //loadFragment();
-            }
-        });
-
-        editnid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-// load Second Fragment
-                editprofile ldf=new editprofile();
-                Bundle args = new Bundle();
-                args.putString("editprofile","nid");
-                ldf.setArguments(args);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.frameLayout,ldf).commit();
-                //loadFragment();
-            }
-        });
 
 
 
@@ -479,5 +384,7 @@ public class first<db> extends Fragment {
     private boolean hasWritePermissions() {
         return (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
+
+
 
 }
